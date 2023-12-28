@@ -1,0 +1,129 @@
+
+
+.market .thumbnail, .quality .thumbnail {
+	border:none;
+}
+
+.padding-top-2x {
+	padding-top:28px;
+}
+
+.margin-top-1x {
+	margin-top:14px;
+}
+
+.margin-top-2x {
+	margin-top:28px;
+}
+
+.div_bordered_bottom {
+	border-bottom:1px solid #ddd
+}
+
+.footer {
+	padding: 0;
+	font-size: 15px;
+	color: #bac1c8;
+	background-color: #34495e;
+    padding-top:30px;
+    border-top: 1px solid #e5e5e5;
+    margin-top: 70px;
+}
+.footer a {
+	color: #fff;
+	text-decoration: none;
+}
+.footer a:focus, .footer a:hover{
+	color:#1abc9c;
+}
+
+.footer p {
+	margin-bottom: 10px;
+	line-height: 20px
+}
+
+.footer li {
+	line-height:28px;
+}
+
+.footer li>ul{
+	padding-left:14px;
+}
+
+.footer li>ul a {
+	color:#ccc;
+}
+
+.footer dl {
+}
+
+.footer dl span {
+	float:left;
+	display:block;
+	width:48px;
+}
+
+.copyright {
+	border-top: 1px solid #fff;
+	background-color: #333;
+	color:#fff;
+	padding-top:12px;
+}
+
+.bg-333 {
+	background-color: #333;
+}
+
+.wrapper {
+  .make-row();
+}
+.content-main {
+  .make-lg-column(8);
+}
+.content-secondary {
+  .make-lg-column(3);
+  .make-lg-column-offset(1);
+}
+
+/* 扩展 Bootstrap navbar dropdown 使支持多级下拉菜单*/
+.dropdown-submenu {
+	position: relative;
+}
+.dropdown-submenu > .dropdown-menu {
+	top: 0;
+	left: 100%;
+	margin-top: -3px;
+	margin-left: -1px;
+	-webkit-border-radius: 0 6px 6px 6px;
+	-moz-border-radius: 0 6px 6px;
+	border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover > .dropdown-menu {
+	display: block;
+}
+.dropdown-submenu > a:after {
+	display: block;
+	content: " ";
+	float: right;
+	width: 0;
+	height: 0;
+	border-color: transparent;
+	border-style: solid;
+	border-width: 5px 0 5px 5px;
+	border-left-color: #ccc;
+	margin-top: 5px;
+	margin-right: -10px;
+}
+.dropdown-submenu:hover > a:after {
+	border-left-color: #fff;
+}
+.dropdown-submenu.pull-left {
+	float: none;
+}
+.dropdown-submenu.pull-left > .dropdown-menu {
+	left: -100%;
+	margin-left: 10px;
+	-webkit-border-radius: 6px 0 6px 6px;
+	-moz-border-radius: 6px 0 6px 6px;
+	border-radius: 6px 0 6px 6px;
+}
