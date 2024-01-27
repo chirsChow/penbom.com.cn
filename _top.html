@@ -18,11 +18,11 @@
     </div>
 </div>
 <script type="text/javascript">
-    if (navigator.language)
-    var language = navigator.language;
-    else
     var language = navigator.browserLanguage;
+    if (navigator.language) {
+        language = navigator.language;  
+    }
     if(language.indexOf('zh') > -1) {
-        document.location.href = '403.html';
+        // document.location.href = '403.html';
     }
 </script>

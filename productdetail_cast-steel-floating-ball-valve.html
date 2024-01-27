@@ -75,19 +75,16 @@
     <ol class="breadcrumb">
         <li><a href="index.html">Home</a></li>
         <li><a href="index.html">Products</a></li>
-        <li class="active">Trunnion Mounted Ball Valve</li>
+        <li class="active">Cast Steel Floating Ball Valve</li>
     </ol>
     <div class="row">
         <div class="col-md-4">
             <div id="carousel-example-generic" class="carousel slide" data-ride="carousel"><!-- Indicators -->
                 <ol class="carousel-indicators">
-                    <li data-target="#carousel-example-generic" data-slide-to=" 0"></li>
-                    <li data-target="#carousel-example-generic" data-slide-to=" 1"></li>
+                    <li data-target="#carousel-example-generic" data-slide-to=" 0" class="active"></li>
                 </ol>  <!-- Wrapper for slides -->
                 <div class="carousel-inner" role="listbox">
-                    <div class="item"><img src="img/product/trunnion-mounted-ball-valve/0.jpg"
-                                           class="img-responsive img-thumbnail"></div>
-                    <div class="item active"><img src="img/product/trunnion-mounted-ball-valve/1.jpg"
+                    <div class="item active"><img src="img/product/cast-steel-floating-ball-valve/0.jpg"
                                                   class="img-responsive img-thumbnail"></div>
                 </div>  <!-- Controls --> <a class="left carousel-control" href="#carousel-example-generic"
                                              role="button" data-slide="prev"> <span
@@ -96,15 +93,10 @@
                     <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span> <span class="sr-only">Next</span>
                 </a></div>
         </div>
-        <div class="col-md-8" id="product-brief"><p>PENBOM trunnion mounted ball valves are designed in accordance with
-            API6D featuring 2 pc or 3 pc split body side entry or top entry design. Wide range of sealing material
-            including PTFE, Peek, Devlon, Nylon etc, valve can be used in working temperature range -46℃~ 500℃. This
-            series of valves are optional designed with Double block a nd bleed or double piston type. All valves are
-            equipped with sealant injection system for both stem and seats to allow external intervention to prevent
-            seat or stem leakage. The top entry ball valve can be used for in-line maintenance services. Neway full
-            range of trunnion mounted ball valves is fire safe test certified by Llody’s Register per API607 and API6FA.<br><br>PENBOM
-            trunnion mounted ball valves include:<br> 2 pc cast steel side entry <br> Cast steel top entry <br> 3 pc
-            forge steel side entry</p></div>
+        <div class="col-md-8" id="product-brief"><p>PENBOM cast steel floating ball valves are designed in accordance
+            with ISO17292 featuring 2 pc split body side entry or uni-body. This series of valves are usually used in
+            service of low pressure (150~300LB) and wide temperature range (-196℃~ 500℃). PENBOM full range of cast
+            steel floating ball valves is fire safe test certified by Llody’s Register per API607 and API6FA.</p></div>
     </div>
 
     <hr class="divider">
@@ -120,50 +112,26 @@
     <!-- Tab panes -->
     <div class="tab-content padding-top-2x">
         <div role="tabpanel" class="tab-pane active" id="design-feature"><p>Full port or reduce port, Fire safe
-            structure, Double block &amp; bleed, Emergency sealant injection, Cavity pressure self relief, Blowout-proof
-            stem, Anti-static, Optional double piston design.</p></div>
+            certified, Blowout-proof stem, Anti-static, Low emission control, Optional locking device, Optional jacket
+            structure(1-pc Ball Valve), ISO 5211 top flange.</p></div>
         <div role="tabpanel" class="tab-pane" id="product-range">
             <table class="table table-striped">
                 <tbody>
                 <tr>
-                    <td><b>2 PC Side Entry Casting</b></td>
-                    <td><b></b></td>
-                </tr>
-                <tr>
                     <td>Size</td>
-                    <td>2~24” (DN50~DN600)</td>
+                    <td>1/2~10” (DN15~DN250)</td>
                 </tr>
                 <tr>
                     <td>Rating</td>
-                    <td>150~1500LB (PN16~PN250)</td>
+                    <td>150~300LB (PN16~PN40)</td>
                 </tr>
                 <tr>
-                    <td><b>Top Entry</b></td>
-                    <td><b></b></td>
-                </tr>
-                <tr>
-                    <td>Size</td>
-                    <td>2~36” (DN50~DN900)</td>
-                </tr>
-                <tr>
-                    <td>Rating</td>
-                    <td>150~1500LB (PN16~PN250)</td>
-                </tr>
-                <tr>
-                    <td><b>3 PC Side Entry Forged</b></td>
-                    <td><b></b></td>
-                </tr>
-                <tr>
-                    <td>Size</td>
-                    <td>1-1/2~60” (DN40~DN1500)</td>
-                </tr>
-                <tr>
-                    <td>Rating</td>
-                    <td> 150~2500LB (PN16~PN420)</td>
+                    <td>End Connection</td>
+                    <td>RF, RTJ</td>
                 </tr>
                 <tr>
                     <td>Materials</td>
-                    <td>A105N, LF2, F1, F5, F9, F11, F22, F304(L), F316(L), F321, F347</td>
+                    <td>WCB, LCC, CF3(M), CF8(M), WC1, WC6, C5, C12, CF8C, CN7M</td>
                 </tr>
                 <tr>
                     <td colspan="2"><b>Special materials also available: (Super) Duplex, Monel, Inconel, Incoloy,
@@ -270,52 +238,33 @@
             + ' </a> ';
 
         var product_range = '<table class="table table-striped"> ';
-
-        for (var i = 0; i < obj.product_range.range.length; i++) {
-            //console.log(obj.product_range.range[i].title)
-            if (obj.product_range.range[i].title != '')
-                product_range += ' <tr><td><b>'
-                    + obj.product_range.range[i].title
-                    + '</b></td><td><b></b></td></tr> ';
-
-            if (obj.product_range.range[i].type != '')
-                product_range += ' <tr><td>Type</td><td>'
-                    + obj.product_range.range[i].type
-                    + ' </td></tr> ';
-
-            if (obj.product_range.range[i].size != '')
-                product_range += ' <tr><td>Size</td><td>'
-                    + obj.product_range.range[i].size
-                    + ' </td></tr> ';
-
-            if (obj.product_range.range[i].rating != '')
-                product_range += ' <tr><td>Rating</td><td>'
-                    + obj.product_range.range[i].rating
-                    + ' </td></tr> ';
-            if (obj.product_range.range[i].end_connection != '')
-                product_range += ' <tr><td>End Connection</td><td>'
-                    + obj.product_range.range[i].end_connection
-                    + ' </td></tr> ';
-            if (obj.product_range.range[i].design != '')
-                product_range += ' <tr><td>Design</td><td>'
-                    + obj.product_range.range[i].design
-                    + ' </td></tr> ';
-            if (obj.product_range.range[i].design_standards != '')
-                product_range += ' <tr><td>Design Standards</td><td>'
-                    + obj.product_range.range[i].design_standards
-                    + ' </td></tr> ';
-        }
+        if (obj.product_range.type != '')
+            product_range += ' <tr><td>Type</td><td>'
+                + obj.product_range.type
+                + ' </td></tr> ';
+        if (obj.product_range.size != '')
+            product_range += ' <tr><td>Size</td><td>'
+                + obj.product_range.size
+                + ' </td></tr> ';
+        if (obj.product_range.rating != '')
+            product_range += ' <tr><td>Rating</td><td>'
+                + obj.product_range.rating
+                + ' </td></tr> ';
+        if (obj.product_range.end_connection != '')
+            product_range += ' <tr><td>End Connection</td><td>'
+                + obj.product_range.end_connection
+                + ' </td></tr> ';
+        if (obj.product_range.design != '')
+            product_range += ' <tr><td>Design</td><td>'
+                + obj.product_range.design
+                + ' </td></tr> ';
+        if (obj.product_range.design_standards != '')
+            product_range += ' <tr><td>Design Standards</td><td>'
+                + obj.product_range.design_standards
+                + ' </td></tr> ';
         if (obj.product_range.materials != '')
             product_range += ' <tr><td>Materials</td><td>'
                 + obj.product_range.materials
-                + ' </td></tr> ';
-        if (obj.product_range.seat_material != '')
-            product_range += ' <tr><td>Seat Material</td><td>'
-                + obj.product_range.seat_material
-                + ' </td></tr> ';
-        if (obj.product_range.screen_materials != '')
-            product_range += ' <tr><td>Screen Materials</td><td>'
-                + obj.product_range.screen_materials
                 + ' </td></tr> ';
         if (obj.product_range.special_materials != '')
             product_range += ' <tr><td colspan="2"><b>Special materials also available: '

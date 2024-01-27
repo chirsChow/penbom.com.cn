@@ -75,16 +75,28 @@
     <ol class="breadcrumb">
         <li><a href="index.html">Home</a></li>
         <li><a href="index.html">Products</a></li>
-        <li class="active">Strainer</li>
+        <li class="active">Forged Valve</li>
     </ol>
     <div class="row">
         <div class="col-md-4">
             <div id="carousel-example-generic" class="carousel slide" data-ride="carousel"><!-- Indicators -->
                 <ol class="carousel-indicators">
-                    <li data-target="#carousel-example-generic" data-slide-to=" 0"></li>
+                    <li data-target="#carousel-example-generic" data-slide-to=" 0" class="active"></li>
+                    <li data-target="#carousel-example-generic" data-slide-to=" 1"></li>
+                    <li data-target="#carousel-example-generic" data-slide-to=" 2"></li>
+                    <li data-target="#carousel-example-generic" data-slide-to=" 3"></li>
+                    <li data-target="#carousel-example-generic" data-slide-to=" 4"></li>
                 </ol>  <!-- Wrapper for slides -->
                 <div class="carousel-inner" role="listbox">
-                    <div class="item active"><img src="img/product/strainer/0.jpg" class="img-responsive img-thumbnail">
+                    <div class="item active"><img src="img/product/forged-valve/0.jpg"
+                                                  class="img-responsive img-thumbnail"></div>
+                    <div class="item "><img src="img/product/forged-valve/1.jpg" class="img-responsive img-thumbnail">
+                    </div>
+                    <div class="item "><img src="img/product/forged-valve/2.jpg" class="img-responsive img-thumbnail">
+                    </div>
+                    <div class="item "><img src="img/product/forged-valve/3.jpg" class="img-responsive img-thumbnail">
+                    </div>
+                    <div class="item "><img src="img/product/forged-valve/4.jpg" class="img-responsive img-thumbnail">
                     </div>
                 </div>  <!-- Controls --> <a class="left carousel-control" href="#carousel-example-generic"
                                              role="button" data-slide="prev"> <span
@@ -93,11 +105,9 @@
                     <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span> <span class="sr-only">Next</span>
                 </a></div>
         </div>
-        <div class="col-md-8" id="product-brief"><p>A strainer is a device which provides a means of mechanically
-            removing solids from a flowing fluid by utilizing a perforated or wire mesh straining element. Strainers are
-            an in expensive means of protecting downstream mechanical equipment such as condensers、heat
-            exchangers、pumps、compressors、meters、spray nozzles turbines、steam traps, etc.. form possible damage due to
-            debris such as rust, pipe scale, sediment, and/or other solids. </p></div>
+        <div class="col-md-8" id="product-brief"><p> PENBOM compact forged steel valves design is optimized by the most
+            advanced FEA (finite element analysis) in accordance with API602, EN/ISO15761 and ANSI B16.34. All
+            components are manufactured using CNC machine centers to ensure consistent high quality.</p></div>
     </div>
 
     <hr class="divider">
@@ -112,26 +122,37 @@
 
     <!-- Tab panes -->
     <div class="tab-content padding-top-2x">
-        <div role="tabpanel" class="tab-pane active" id="design-feature"><p>Y or T – pattern, Bolted Cover, Drain Plug,
-            Stainless steel screen, Flange, BW, Thread and SW Ends</p></div>
+        <div role="tabpanel" class="tab-pane active" id="design-feature"><p>Full die forged or open die forging
+            structure, Solid Wedge, Bolted or Welded Bonnet, Optional full or reduce port, Optional below seal structure
+            (Gate and Globe), Optional plug or needle disc (Globe), Optional lift or swing disc (Check), Optional jacket
+            structure(Gate Globe Check),
+            Optional Cryogenic structure(Gate Globe Check).</p></div>
         <div role="tabpanel" class="tab-pane" id="product-range">
             <table class="table table-striped">
                 <tbody>
                 <tr>
+                    <td>Type</td>
+                    <td>Gate, Globe, Check</td>
+                </tr>
+                <tr>
                     <td>Size</td>
-                    <td>1/2~20”</td>
+                    <td>1/2~2” (DN15~DN50)</td>
                 </tr>
                 <tr>
                     <td>Rating</td>
-                    <td>150~600LB(PN16~PN100)</td>
+                    <td>150~2500LB (PN16~PN420)</td>
+                </tr>
+                <tr>
+                    <td>End Connection</td>
+                    <td>NPT, SW, RF, RTJ, BW</td>
                 </tr>
                 <tr>
                     <td>Materials</td>
-                    <td>WCB, LCC, CF3(M), CF8(M), WC1, WC6, C5, C12, CF8C, CN7M</td>
+                    <td>A105N, LF2, F1, F5, F9, F11, F22, F304(L), F316(L), F321, F347</td>
                 </tr>
                 <tr>
-                    <td>Screen Materials</td>
-                    <td>304, 316</td>
+                    <td colspan="2"><b>Special materials also available: (Super) Duplex, Monel, Inconel, Incoloy,
+                        Hastelloy, Zirconium, Titanium, Nickel Aluminum bronze Nickel Aluminum bronze, Duplex </b></td>
                 </tr>
                 </tbody>
             </table>
@@ -234,52 +255,33 @@
             + ' </a> ';
 
         var product_range = '<table class="table table-striped"> ';
-
-        for (var i = 0; i < obj.product_range.range.length; i++) {
-            //console.log(obj.product_range.range[i].title)
-            if (obj.product_range.range[i].title != '')
-                product_range += ' <tr><td><b>'
-                    + obj.product_range.range[i].title
-                    + '</b></td><td><b></b></td></tr> ';
-
-            if (obj.product_range.range[i].type != '')
-                product_range += ' <tr><td>Type</td><td>'
-                    + obj.product_range.range[i].type
-                    + ' </td></tr> ';
-
-            if (obj.product_range.range[i].size != '')
-                product_range += ' <tr><td>Size</td><td>'
-                    + obj.product_range.range[i].size
-                    + ' </td></tr> ';
-
-            if (obj.product_range.range[i].rating != '')
-                product_range += ' <tr><td>Rating</td><td>'
-                    + obj.product_range.range[i].rating
-                    + ' </td></tr> ';
-            if (obj.product_range.range[i].end_connection != '')
-                product_range += ' <tr><td>End Connection</td><td>'
-                    + obj.product_range.range[i].end_connection
-                    + ' </td></tr> ';
-            if (obj.product_range.range[i].design != '')
-                product_range += ' <tr><td>Design</td><td>'
-                    + obj.product_range.range[i].design
-                    + ' </td></tr> ';
-            if (obj.product_range.range[i].design_standards != '')
-                product_range += ' <tr><td>Design Standards</td><td>'
-                    + obj.product_range.range[i].design_standards
-                    + ' </td></tr> ';
-        }
+        if (obj.product_range.type != '')
+            product_range += ' <tr><td>Type</td><td>'
+                + obj.product_range.type
+                + ' </td></tr> ';
+        if (obj.product_range.size != '')
+            product_range += ' <tr><td>Size</td><td>'
+                + obj.product_range.size
+                + ' </td></tr> ';
+        if (obj.product_range.rating != '')
+            product_range += ' <tr><td>Rating</td><td>'
+                + obj.product_range.rating
+                + ' </td></tr> ';
+        if (obj.product_range.end_connection != '')
+            product_range += ' <tr><td>End Connection</td><td>'
+                + obj.product_range.end_connection
+                + ' </td></tr> ';
+        if (obj.product_range.design != '')
+            product_range += ' <tr><td>Design</td><td>'
+                + obj.product_range.design
+                + ' </td></tr> ';
+        if (obj.product_range.design_standards != '')
+            product_range += ' <tr><td>Design Standards</td><td>'
+                + obj.product_range.design_standards
+                + ' </td></tr> ';
         if (obj.product_range.materials != '')
             product_range += ' <tr><td>Materials</td><td>'
                 + obj.product_range.materials
-                + ' </td></tr> ';
-        if (obj.product_range.seat_material != '')
-            product_range += ' <tr><td>Seat Material</td><td>'
-                + obj.product_range.seat_material
-                + ' </td></tr> ';
-        if (obj.product_range.screen_materials != '')
-            product_range += ' <tr><td>Screen Materials</td><td>'
-                + obj.product_range.screen_materials
                 + ' </td></tr> ';
         if (obj.product_range.special_materials != '')
             product_range += ' <tr><td colspan="2"><b>Special materials also available: '
