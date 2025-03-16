@@ -1,0 +1,345 @@
+<!--阿里百炼大模型
+<link rel="stylesheet" crossorigin href="https://g.alicdn.com/aliyun-documentation/web-chatbot-ui/0.0.24/index.css" />
+<script type="module" crossorigin src="https://g.alicdn.com/aliyun-documentation/web-chatbot-ui/0.0.24/index.js"></script>
+<script>
+    window.CHATBOT_CONFIG = {
+    endpoint: "https://43.138.57.137/chat", // 可以替换为 https://{your-fc-http-trigger-domain}/chat
+    displayByDefault: false, // 默认不显示 AI 助手对话框
+    title: 'AI 助手', // 自定义 AI 助手标题
+    draggable: true, // 是否开启拖拽
+    aiChatOptions: { // 自定义取值参考：https://docs.nlkit.com/nlux/reference/ui/ai-chat#conversation-options
+        conversationOptions: { // 自定义取值参考：https://docs.nlkit.com/nlux/reference/ui/ai-chat#conversation-options
+        conversationStarters: [
+            {prompt: '公司有哪些产品？'},
+            {prompt: '产品型号有哪些？'},
+            {prompt: '怎么联系客服?'},
+        ]
+        },
+        displayOptions: { // 自定义取值参考：https://docs.nlkit.com/nlux/reference/ui/ai-chat#display-options
+        height: 400,
+        // width: 400,
+        },
+        personaOptions: { // 自定义取值参考：https://docs.nlkit.com/nlux/reference/ui/ai-chat#chat-personas
+        assistant: {
+            name: '你好，我是小bom，是你的 AI 助手',
+            // AI 助手的图标
+            avatar: 'https://img.alicdn.com/imgextra/i2/O1CN01Pda9nq1YDV0mnZ31H_!!6000000003025-54-tps-120-120.apng',
+            tagline: '您可以尝试点击下方的快捷入口开启体验！',
+        }
+        },
+        messageOptions: { // 自定义取值参考：https://docs.nlkit.com/nlux/reference/ui/ai-chat#message-options
+        waitTimeBeforeStreamCompletion: 'never'
+        }
+    },
+    dataProcessor: {
+        /**
+         * 在向后端大模型应用发起请求前改写 Prompt。
+         * 比如可以用于总结网页场景，在发送前将网页内容包含在内，同时避免在前端显示这些内容。
+         * @param {string} prompt - 用户输入的 Prompt
+         * @param {string}  - 改写后的 Prompt
+         */
+        rewritePrompt(prompt) {
+        return prompt;
+        }
+    }
+    };
+</script>
+<style>
+    :root {
+        /* webchat 工具栏的颜色 */
+        --webchat-toolbar-background-color: #1464E4;
+        /* webchat 工具栏文字和按钮的颜色 */
+        --webchat-toolbar-text-color: #FFF;
+    }
+    /* webchat 对话框如果被遮挡，可以尝试通过 z-index、bottom、right 等设置 来调整*/
+    .webchat-container {
+        z-index: 100;
+        bottom: 10px;
+        right: 10px !important;
+    }
+    /* webchat 的唤起按钮如果被遮挡，可以尝试通过 z-index、bottom、right 等设置 来调整。也可以通过 CSS 进一步定制唤起按钮的形状、大小等。 */
+    .webchat-bubble-tip {
+        z-index: 99;
+        bottom: 20px;
+        right: 20px;
+    }
+</style>
+-->
+<!--阿里百炼大模型-自定义聊天弹窗-->
+<!--打开/关闭聊天框-->
+<button id="chatButton" class="icon-button"></button>
+<!--聊天弹窗-->
+<div id="chatWindow" style="display:none;">
+    <div class="chat-container">
+        <!-- 窗口头部 -->
+        <div class="chat-header">
+            <h3>智能助手</h3>
+            <button class="close-button">×</button>
+        </div>
+        <!-- 聊天历史记录 -->
+        <div class="chat-history" id="chatHistory">
+            <!-- 历史消息会动态插入到这里 -->
+        </div>
+    
+        <!-- 输入框和发送按钮 -->
+        <div class="chat-input-container">
+            <input type="text" id="chatInput" placeholder="输入消息...">
+            <button id="sendButton">
+                <span class="button-text">发送</span>
+                <span class="loading-spinner"></span>
+            </button>
+        </div>
+    </div>
+</div>
+
+<script>
+$(document).ready(function() {
+    // 点击按钮显示或隐藏聊天窗口
+    $('#chatButton').click(function() {
+        $('#chatWindow').toggle();
+    });
+
+    // 点击隐藏聊天窗口
+    $('#chatWindow .close-button').click(function() {
+        $("#chatWindow").hide();
+    });
+
+    // 点击发送按钮
+    $('#sendButton').click(function() {
+        sendMessage();
+        console.log('===', $('#chatInput').val())
+         
+    })
+    // 输入框回车键事件
+    $('#chatInput').keypress(function(e) {
+        if (e.which === 13) { // 回车键的键码是 13
+            sendMessage();
+        }
+    });
+    // 发送请求
+    function sendMessage() {
+        var prompt = $('#chatInput').val().trim()
+        if (!prompt) return;
+        // 禁用按钮并显示加载动画
+        $('#sendButton').prop('disabled', true).addClass('loading');
+        // 发送 POST 请求
+        $.post('http://43.138.57.137:8001/aigc/penbom/chat', { prompt: prompt }, function(response) {
+            // 显示用户消息
+            appendMessage('user', prompt);
+            // 显示机器人回复
+            appendMessage('bot', response);
+            // 清空输入框
+            $('#chatInput').val('');
+            // 模拟请求完成
+            $('#sendButton').prop('disabled', false).removeClass('loading');
+        }).fail(function(error) {
+            // 显示用户消息
+            appendMessage('user', prompt);
+            // 显示机器人回复
+            // 处理错误
+            appendMessage('bot', '抱歉，请求失败，请稍后重试。');
+            // 清空输入框
+            $('#chatInput').val('');
+            // 模拟请求完成
+            $('#sendButton').prop('disabled', false).removeClass('loading');
+        });
+    }
+
+    // 添加消息到聊天历史记录
+    function appendMessage(sender, message) {
+        if (!message) return;
+        const messageClass = sender === 'user' ? 'user' : 'bot';
+        const messageHtml = `
+            <div class="message ${messageClass}">
+                <p>${message}</p>
+            </div>
+        `;
+        $('#chatHistory').append(messageHtml);
+
+        // 滚动到底部
+        $('#chatHistory').scrollTop($('#chatHistory')[0].scrollHeight);
+    }
+});
+</script>
+
+<style>
+/*打开聊天窗口按钮样式*/
+.icon-button {
+    width: 80px;
+    height: 80px;
+    overflow: hidden;
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    padding: 10px 20px;
+    background-position: center; /* 图标居中 */
+    background-repeat: no-repeat; /* 防止重复 */
+    background-image: url('https://img.alicdn.com/imgextra/i2/O1CN01Pda9nq1YDV0mnZ31H_!!6000000003025-54-tps-120-120.apng'); /* 替换为你的图标 URL */
+    background-size: cover;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.icon-button:hover::before {
+    transform: scale(1.2); /* 悬停时图标放大 */
+}
+/*聊天窗口样式*/
+#chatWindow {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: 400px;
+    height: 500px;
+    background-color: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    overflow: hidden;
+    display: none;
+}
+.chat-container {
+    width: 400px;
+    height: 500px; /* 固定高度 */
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    overflow-y: scroll;
+    overflow-x: hidden;
+    display: flex;
+    flex-direction: column;
+}
+.chat-header {
+    background-color: #007bff;
+    color: #ffffff;
+    padding: 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-radius: 10px 10px 0 0;
+}
+
+.chat-header h3 {
+    margin: 0;
+    font-size: 18px;
+}
+
+.close-button {
+    background: none;
+    border: none;
+    color: #ffffff;
+    font-size: 24px;
+    cursor: pointer;
+    padding: 0;
+    line-height: 1;
+}
+
+.close-button:hover {
+    color: #ff0000;
+}
+.chat-history {
+    flex: 1;
+    padding: 15px;
+    margin-bottom: 60px;
+    overflow-x: hidden;
+    overflow-y: auto; /* 允许垂直滚动 */
+    background-color: #f9f9f9;
+}
+
+#chatWindow .message {
+    margin-bottom: 10px;
+    padding: 10px;
+    border-radius: 5px;
+    max-width: 80%;
+}
+
+#chatWindow .message.user {
+    background-color: #007bff;
+    color: #ffffff;
+    margin-left: auto;
+    border-radius: 10px 10px 0 10px;
+}
+
+#chatWindow .message.bot {
+    background-color: #e0e0e0;
+    color: #333333;
+    margin-right: auto;
+    border-radius: 10px 10px 10px 0;
+}
+
+.chat-input-container {
+    display: flex;
+    padding: 10px;
+    background-color: #f1f1f1;
+    border-top: 1px solid #ddd;
+    position: absolute;
+    width: 100%;
+    bottom: 0;
+}
+
+#chatInput {
+    flex: 1;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 14px;
+    outline: none;
+}
+
+#sendButton {
+    margin-left: 10px;
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: #ffffff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.3s ease;
+}
+
+#sendButton:hover {
+    background-color: #0056b3;
+}
+
+#sendButton:disabled {
+    background-color: #cccccc;
+    cursor: not-allowed;
+}
+
+.loading-spinner {
+    width: 16px;
+    height: 16px;
+    border: 2px solid #ffffff;
+    border-top: 2px solid transparent;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    display: none; /* 默认隐藏 */
+    position: absolute;
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+#sendButton .button-text {
+    display: inline-block;
+}
+
+/* 加载时隐藏按钮文字 */
+#sendButton.loading .button-text {
+    visibility: hidden;
+}
+
+/* 加载时显示旋转动画 */
+#sendButton.loading .loading-spinner {
+    display: block;
+}
+</style>
