@@ -123,7 +123,7 @@ $(document).ready(function() {
         // 禁用按钮并显示加载动画
         $('#sendButton').prop('disabled', true).addClass('loading');
         // 发送 POST 请求
-        $.post('http://43.138.57.137:8001/aigc/penbom/chat', { prompt: prompt }, function(response) {
+        $.post('https://penbom.com.cn:8001/aigc/penbom/chat', { prompt: prompt }, function(response) {
             // 显示用户消息
             appendMessage('user', prompt);
             // 显示机器人回复
